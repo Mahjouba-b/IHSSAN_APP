@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "397566124081",
+    "project_id": "ihassan-app",
+    "storage_bucket": "ihassan-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397566124081:android:687b2d5f39e3da0b833510",
+        "android_client_info": {
+          "package_name": "com.bouba.ihssan_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397566124081-qhidkm2heleppe72mcj0qs65ajb4dtcq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDu2uaFNKYpzYpBVv2D1_Vq0c9Ii-5aURc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397566124081-qhidkm2heleppe72mcj0qs65ajb4dtcq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
