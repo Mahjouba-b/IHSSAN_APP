@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:ihssan_app/database.dart';
+import 'package:ihssan_app/home.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart' as Path;
 
@@ -65,9 +66,10 @@ class MyCustomFormState extends State<MyCustomForm> {
         padding: EdgeInsets.all(10.0),
         child: Column(
           children: [
-            Text("Pick Image"),
+            Text("Pick an Image"),
             SizedBox(height: 10,),
             MaterialButton(
+              color: Colors.orangeAccent,
               child: Text("Use Camera"),
                 onPressed: () {
                   pickImage(context, ImageSource.camera);
@@ -75,6 +77,7 @@ class MyCustomFormState extends State<MyCustomForm> {
             ),
             SizedBox(height: 10,),
             MaterialButton(
+                color: Colors.orangeAccent,
               child: Text("Choose from Gallery"),
                 onPressed: () {
                   pickImage(context, ImageSource.gallery);
@@ -91,7 +94,9 @@ class MyCustomFormState extends State<MyCustomForm> {
     return WillPopScope(
       onWillPop: () async => true,
       child: new Scaffold(
-        appBar: AppBar(title: Text('cases create interface')),
+        appBar: AppBar(title: Text('New Case',
+          style: TextStyle(color: Colors.white),),
+          backgroundColor: Colors.orangeAccent,),
         body: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -100,6 +105,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 Padding(
                   padding: EdgeInsets.all(8.0),
                   child: CircleAvatar(
+                    backgroundColor: Colors.grey,
                     radius: 50,
                     child: ClipOval(
                       child: InkWell(
@@ -115,7 +121,8 @@ class MyCustomFormState extends State<MyCustomForm> {
                           :
                               Center(
                                 child: Icon(
-                                  Icons.camera_alt
+                                  Icons.camera_alt,
+                                  color: Colors.orangeAccent,
                                 ),
                               )
                         ),
@@ -172,9 +179,9 @@ class MyCustomFormState extends State<MyCustomForm> {
                       if (value.isEmpty) {
                         return "* Required";
                       } else if (value.length < 8) {
-                        return "PHONE should be atleast 8 numbers";
+                        return "PHONE should be at least 8 numbers";
                       } else if (value.length > 13) {
-                        return "Password should not be greater than 13 characters";
+                        return "Phone Number should not be greater than 13 numbers";
                       } else
                         phone = value;
                         return null;
@@ -198,13 +205,17 @@ class MyCustomFormState extends State<MyCustomForm> {
                   ),
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.orangeAccent, // background
+                    onPrimary: Colors.black, // foreground
+                  ),
                   onPressed: () {
                     // Validate returns true if the form is valid, or false otherwise.
                     if (_formKey.currentState.validate()) {
                       // If the form is valid, display a snackbar. In the real world,
                       // you'd often call a server or save the information in a database.
-                      Database.addCase(name: name, description: description, tel: phone, state: state, image: image);
-                      // Navigator.push(context, MaterialPageRoute(builder: (context) => Cases()));
+                      Database.addCase(name: name, description: description, tel: phone, state: state, image: image, status: "New");
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => Home()));
                       ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text('Processing Data ....')));
                     }

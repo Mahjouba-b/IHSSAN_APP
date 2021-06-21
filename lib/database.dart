@@ -17,6 +17,7 @@ class Database{
     @required String tel,
    @required String state,
    @required String image,
+    @required String status,
 
   }) async {
     DocumentReference documentReferencer =
@@ -28,6 +29,7 @@ class Database{
       "tel": tel,
       "state": state,
       "image": image,
+      "status": status,
 
     };
 
@@ -56,15 +58,19 @@ class Database{
     @required String tel,
     @required String state,
     @required String docId,
+    @required String image,
+    @required String status,
   }) async {
     DocumentReference documentReferencer =
-    _mainCollection.doc(userUid).collection('cases').doc(docId);
+    _mainCollection.doc(docId);
 
     Map<String, dynamic> data = <String, dynamic>{
       "name": name,
       "description": description,
       "tel": tel,
       "state": state,
+      "image": image,
+      "status": status
     };
     await documentReferencer
         .update(data)
@@ -77,7 +83,7 @@ class Database{
     @required String docId,
   }) async {
     DocumentReference documentReferencer =
-    _mainCollection.doc(userUid).collection('cases').doc(docId);
+    _mainCollection.doc(docId);
 
     await documentReferencer
         .delete()
